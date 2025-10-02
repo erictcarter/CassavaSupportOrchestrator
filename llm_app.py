@@ -8,10 +8,14 @@ import os
 
 
 
-api_key = "openai-api-key"
+# Get API key from environment variable
+api_key = os.environ.get('OPENAI_API_KEY', '')
 
-# Set the OpenAI API key as an environment variable
-os.environ['OPENAI_API_KEY'] = api_key
+# Set the OpenAI API key as an environment variable (in case it's not already set)
+if api_key:
+    os.environ['OPENAI_API_KEY'] = api_key
+else:
+    st.error("OpenAI API key not found. Please set the OPENAI_API_KEY environment variable.")
 
 
 st.title("Hi, I'm your Shopify Agent")
